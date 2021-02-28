@@ -1,0 +1,73 @@
+body
+{
+  font-family: 'Reggae one';
+  margin: 50px;
+}
+h1{
+    color: burlywood;
+    font-family: 'Reggae one', cursive;
+}
+.arrow{
+    font-size: 45px;
+    color: crimson;
+    position: absolute;
+    top: 0;
+    transform: rotate(90deg);
+}
+
+#spinBUttonBed{
+  position: absolute;
+}
+
+#spin_button img{
+  background: transparent;
+  cursor: pointer;
+}
+
+.power_controls{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0;
+  background: transparent;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+/* canvas scale */
+#canvas{
+    border-radius: 25em;
+    padding: 2px;
+    width: calc(600px - 0%);
+    object-fit: contain;
+}
+
+.blurrMagic{
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+  transition: all 1.75s cubic-bezier(.71,0,.33,1.56) 0ms;
+}
+.blurroff{
+	-webkit-filter: blur(0px);
+	filter: blur(0px);
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
+  transition: all 4.75s cubic-bezier(.71,0,.33,1.56) 0ms;
+}
+
+/**MEDIA QUERS**/
+/* 425px or less*/
+@media screen and (max-width: 791px) {
+    #canvas {
+        min-width: 350px;
+    }
+    img#spin_button {
+    max-width: calc(4em + 5px);
+    }
+    h1{
+        font-size: 15px;
+    }
+}
+

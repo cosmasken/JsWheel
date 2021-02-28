@@ -1,0 +1,221 @@
+<html>
+    <head>
+        <title>Emotion Wheel</title>
+        <link rel="stylesheet" href="main.css" type="text/css" />
+        <script type="text/javascript" src="js/Queue.src.js"></script>
+ <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="Winwheel.min.js"></script>
+        <script type="text/javascript" src="Winwheel.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+<style>
+#nextbutton {
+    display:none;
+}
+</style>
+        <div align="center">
+<h1 style="margin-top: -30px;"><b>Body Feel</b></h1>
+            <div id="zoom" class="power_controls the_wheel">
+          
+              <div id="spinBUttonBed"><img id="spin_button" src="img/wahle.png" width="100px"/></div>
+          
+              <!-- <div class="arrow">&#10148;</div> -->
+          
+              <canvas id="canvas" width="400" height="400">
+                
+              </canvas>
+          
+            </div>
+          </div>
+          <div class="clk" style="font-family: 'Reggae one', cursive; color: burlywood; font-size: 18px;">
+               Choose three feelings: <span id="header" style="color: crimson;"></span>
+          </div>
+          <div class="clk" style="font-family: 'Reggae one', cursive; color: burlywood; font-size: 18px;">
+               You chose: <span id="clickedWhat" style="color: crimson;"></span>
+          </div>
+          <div class="clk" style="font-family: 'Reggae one', cursive; color: burlywood; font-size: 18px;">
+               You chose: <span id="clickedWhat2" style="color: crimson;"></span>
+          </div>
+          <div class="clk" style="font-family: 'Reggae one', cursive; color: burlywood; font-size: 18px;">
+               You chose: <span id="clickedWhat3" style="color: crimson;"></span>
+          </div>
+         <a id = "nextbutton"  onclick="sendToNewPage()">Next &raquo;</a>
+
+    <script>
+  myStorage = window.sessionStorage;
+let wheelNumber = 0;
+let canvas = document.getElementById("canvas");
+let clickedWhat = document.getElementById("clickedWhat");
+let clickedWhat2 = document.getElementById("clickedWhat2");
+let clickedWhat3 = document.getElementById("clickedWhat3");
+let nextbutton = document.getElementById("nextbutton");
+
+var queue = new Queue(); 
+function saveData(dataString){
+if(queue.getLength()==3){
+  queue.dequeue();
+	queue.enqueue(dataString);
+
+nextbutton.style.display = "block";
+
+}else {
+	queue.enqueue(dataString);
+}
+clickedWhat.innerText =queue.peek();
+clickedWhat2.innerText =queue.secondItem();
+clickedWhat3.innerText =queue.third();
+}
+
+// Specify click handler for canvas.
+canvas.onclick = function (e) {
+
+  // Call the getSegmentAt function passing the mouse x and y from the event.
+  let segmentImage = theWheel.getSegmentAt(e.clientX, e.clientY);
+
+  // A pointer to the segment clicked is returned if the user clicked inside the wheel.
+  if (segmentImage.text == "Ausgeschlossen") {
+   // window.location = "img/ausge.png";
+   // theWheel.draw();
+   saveData(segmentImage.text);            
+	} else if (segmentImage.text == "Beschaemt") {
+      saveData(segmentImage.text);
+  } else if (segmentImage.text == "Dankbar") {
+  saveData(segmentImage.text);
+   } else if (segmentImage.text == "Frei") {
+  saveData(segmentImage.text);
+} else if (segmentImage.text == "Gleichgueltig") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Gluecklich") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Hoffnungsvoll") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Missgeachtet") {
+    saveData(segmentImage.text);
+   } else if (segmentImage.text == "Angesehen") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Wuetend") {
+   saveData(segmentImage.text);
+  } else if (segmentImage.text == "Provoziert") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Schikaniert") {
+   saveData(segmentImage.text);
+  } else if (segmentImage.text == "Schuldig") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Skeptisch") {
+   saveData(segmentImage.text);
+  } else if (segmentImage.text == "Taub") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Traurig") {
+   saveData(segmentImage.text);
+  } else if (segmentImage.text == "Veraengstlich") {
+    saveData(segmentImage.text);
+  } else if (segmentImage.text == "Verletzlich") {
+   
+saveData(segmentImage.text);
+  }
+};
+// Also blank clicked what text.
+clickedWhat.innerText = "";
+//**--END some click tests to the project
+
+// Create new wheel object specifying the parameters at creation time.
+let theWheel = new Winwheel({
+  numSegments: 18, // Specify number of segments.
+  outerRadius: 300, // Set outer radius so wheel fits inside the background.
+  innerRadius: 30,
+  drawText: false, // Code drawn text can be used with segment images.
+  textFontSize: 16,
+  textOrientation: "curved",
+  textAlignment: "inner",
+  textMargin: 150,
+  textFontFamily: "monospace",
+  textStrokeStyle: "black",
+  textLineWidth: 3,
+  textFillStyle: "Image",
+  drawMode: "segmentImage", // Must be segmentImage to draw wheel using one image per segemnt.
+  // Define segments including image and text.
+  segments: [
+    {
+      image: "img/ausge.png",
+      text: "Ausgeschlossen"
+    },
+    {
+      image: "img/bes.png",
+      text: "Beschaemt"
+    },
+    {
+      image: "img/Dankbar.png",
+      text: "Dankbar"
+    },
+    {
+      image: "img/Frei.png",
+      text: "Frei"
+    },
+    {
+      image: "img/gleich.png",
+      text: "Gleichgueltig"
+    },
+    {
+      image: "img/gluck.png",
+      text: "Gluecklich"
+    },
+    {
+      image: "img/hoff.png",
+      text: "Hoffnungsvoll"
+    },
+    {
+      image: "img/miss.png",
+      text: "Missgeachtet"
+    },
+    {
+      image: "img/anges.png",
+      text: "Angesehen"
+    },
+    {
+      image: "img/wutend.png",
+      text: "Wuetend"
+    },
+    {
+      image: "img/provo.png",
+      text: "Provoziert"
+    },
+    {
+      image: "img/schik.png",
+      text: "Schikaniert"
+    },
+    {
+      image: "img/schul.png",
+      text: "Schuldig"
+    },
+    {
+      image: "img/skep.png",
+      text: "Skeptisch"
+    },
+    {
+      image: "img/Taub.png",
+      text: "Taub"
+    },
+    {
+      image: "img/trau.png",
+      text: "Traurig"
+    },
+    {
+      image: "img/vera.png",
+      text: "Veraengstlich"
+    },
+    {
+      image: "img/verlet.png",
+      text: "Verletzlich"
+    }
+  ],
+
+});
+
+
+
+    </script>
+    </body>
+</html>

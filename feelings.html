@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Emotion Wheel</title>
+        <link rel="stylesheet" href="main.css" type="text/css" />         
+         <script src="https://unpkg.com/konva@7.2.4/konva.min.js"></script>
+         <script type="text/javascript">
+
+// Get saved data from sessionStorage
+let data = localStorage.getItem('key');
+function getData() {
+
+    alert(data[1]);
+}
+
+</script>
+         <style>
+         body{
+         width: 300;
+         height:300;
+        
+         }
+         #fullbody{
+         width: 300;
+         height:300;
+         }
+         
+        .toolbar ul {
+            display:flex;
+            flex-direction:column;
+        }
+        .main {
+            display:flex;
+            flex-direction:row;
+        }
+        
+        .toolbar ul img
+        {
+            display: table-cell;
+            height: 13px;
+            width: 50px;
+            list-style-type: none;
+            margin: 10px;
+            vertical-align: middle;
+        }
+        
+         </style>
+    </head>
+    <body>
+    <h1 style="margin-top: -30px;"><b>Click each feeling snd select where you feel</b></h1>  
+        <div class="main" align="center">
+
+<div class="toolbar">  
+          <ul >
+           <img src="img/Angesehen.png"onclick="getData()">
+            <img src="img/Angesehen.png"onclick="getData()">
+             <img src="img/Angesehen.png"onclick="getData()">
+          </ul>
+          </div>
+          <div>
+            <img id="fullbody"src="img/fullbody.png"usemap="#image-map">
+          
+
+<map name="image-map">
+    <area target="_parent" alt="index" title="head" href="" coords="1384,478,474" shape="circle">
+    <area target="" alt="" title="rightleg" href="" coords="909,3444,1163,5022" shape="rect">
+    <area target="" alt="" title="leftleg" href="" coords="1829,3506,1625,4977" shape="rect">
+    <area target="" alt="" title="righthand" href="" coords="311,2659,325" shape="circle">
+    <area target="" alt="" title="lefthand" href="" coords="2455,2568,355" shape="circle">
+    <area target="" alt="" title="torso" href="" coords="1356,2099,586" shape="circle">
+</map>
+          </div>
+                
+              </canvas>
+          
+            </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/imageMapResizer.min.js"></script>
+    <script>
+    
+$(document).ready(function(e) {
+$('map').imageMapResize();
+	
+	$('area').on('click', function() {
+		alert($(this).attr('alt') + ' clicked');
+	});
+});
+
+</script>
+    </body>
+</html>
